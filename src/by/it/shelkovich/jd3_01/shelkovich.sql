@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Ноя 26 2017 г., 11:44
+-- Время создания: Ноя 27 2017 г., 11:44
 -- Версия сервера: 5.7.16-log
 -- Версия PHP: 7.0.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- База данных: `shelkovich`
 --
+CREATE DATABASE IF NOT EXISTS `shelkovich` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `shelkovich`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Структура таблицы `comments`
 --
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -47,6 +50,7 @@ INSERT INTO `comments` (`id`, `user_id`, `post_id`, `text`) VALUES
 -- Структура таблицы `follow_links`
 --
 
+DROP TABLE IF EXISTS `follow_links`;
 CREATE TABLE `follow_links` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -68,6 +72,7 @@ INSERT INTO `follow_links` (`id`, `user_id`, `follower_id`) VALUES
 -- Структура таблицы `posts`
 --
 
+DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -93,6 +98,7 @@ INSERT INTO `posts` (`id`, `user_id`, `imageURL`, `description`, `likes`, `lat`,
 -- Структура таблицы `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `role` varchar(20) NOT NULL
@@ -113,6 +119,7 @@ INSERT INTO `roles` (`id`, `role`) VALUES
 -- Структура таблицы `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,

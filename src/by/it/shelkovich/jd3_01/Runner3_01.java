@@ -9,7 +9,7 @@ public class Runner3_01 {
         //B_AddRole.run();
         //B_ShowUsers.run();
 
-        C_Reset.run();
+        //C_Reset.run();
         C_Init init = new C_Init("src/by/it/shelkovich/jd3_01/shelkovich.sql");
         init.run();
         B_ShowUsers.run();
