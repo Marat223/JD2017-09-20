@@ -1,12 +1,14 @@
 package by.it.ali.jd03_01;
 
+import by.it.ali.jd03_01.INF;
+
 import java.sql.*;
 
 public class Select_users {
     public static void done() {
         try (
-            Connection connection = DriverManager.getConnection(INF.URL,INF.USER,INF.PASSWORD);
-            Statement statement = connection.createStatement();)
+                Connection connection = DriverManager.getConnection(INF.URL,INF.USER,INF.PASSWORD);
+                Statement statement = connection.createStatement();)
         {
             ResultSet resultSet=statement.executeQuery("select*from users");
             while (resultSet.next()){
