@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Users>
+    <User>
+        <id>1</id>
+        <username>vasily16</username>
+        <passHash>e10adc3949ba59abbe56e057f20f883e</passHash>
+        <description>Серьёзный парень на серьёзной тачке</description>
+        <role_id>3</role_id>
+        <name>Василий</name>
+        <surname>Ручкин</surname>
+        <email>vasily16@gmail.com</email>
+        <showPersonalData>false</showPersonalData>
+    </User>
+    <User>
+        <id>2</id>
+        <username>marina_e</username>
+        <passHash>d8578edf8458ce06fbc5bb76a58c5ca4</passHash>
+        <description>Владелица таксы и просто милаха! Мой вайбер 1312567, пишите!</description>
+        <role_id>3</role_id>
+        <name>Марина</name>
+        <surname>Емелина</surname>
+        <email>emelina_m@tut.by</email>
+        <showPersonalData>true</showPersonalData>
+    </User>
+    <User>
+        <id>3</id>
+        <username>nails_salon</username>
+        <passHash>d44779226be3e9d648bfe4713a0a9786</passHash>
+        <description>Салон ногтей "У Вероники". Лак, полировка, маникюр, педикюр, накладные, закладные, перекладные! +375(29)15-16-178</description>
+        <role_id>3</role_id>
+        <name>Салон</name>
+        <surname>Ногтей</surname>
+        <email>nails1234@gmail.com</email>
+        <showPersonalData>true</showPersonalData>
+    </User>
+    <User>
+        <id>4</id>
+        <username>admin</username>
+        <passHash>8f728d6bfc4dd6cd00067451bf0fa0e4</passHash>
+        <description>Администратор</description>
+        <role_id>1</role_id>
+        <name>Антон</name>
+        <surname>Шелкович</surname>
+        <email>anton.shelkovich@gmail.com</email>
+        <showPersonalData>false</showPersonalData>
+    </User>
+</Users>

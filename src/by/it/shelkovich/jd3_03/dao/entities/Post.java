@@ -1,15 +1,42 @@
-package by.it.shelkovich.jd3_03.entities;
+package by.it.shelkovich.jd3_03.dao.entities;
 
-import by.it.shelkovich.jd3_03.annotations.Entity;
+import by.it.shelkovich.jd3_03.dao.annotations.Entity;
+
+import javax.xml.bind.annotation.*;
 
 @Entity(tableName="posts")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name="post", propOrder = {
+        "id",
+        "user_id",
+        "imageURL",
+        "description",
+        "likes",
+        "lat",
+        "lng"
+
+})
 public class Post {
+    @XmlElement(required = true)
     private int id;
+
+    @XmlElement(required = true)
     private int user_id;
+
+    @XmlElement(required = true)
     private String imageURL;
+
+    @XmlElement(required = true)
     private String description;
+
+    @XmlElement(required = true)
     private int likes;
+
+    @XmlElement(required = false)
     private String lat;
+
+    @XmlElement(required = false)
     private String lng;
 
     public Post() {

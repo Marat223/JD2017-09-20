@@ -1,10 +1,20 @@
-package by.it.shelkovich.jd3_03.entities;
+package by.it.shelkovich.jd3_03.dao.entities;
 
-import by.it.shelkovich.jd3_03.annotations.Entity;
+import by.it.shelkovich.jd3_03.dao.annotations.Entity;
+
+import javax.xml.bind.annotation.*;
 
 @Entity(tableName="roles")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name="role", propOrder = {
+        "id",
+        "role"
+})
 public class Role {
+    @XmlElement(required = true)
     private int id;
+    @XmlElement(required = true)
     private String role;
 
     public Role(int id, String role) {

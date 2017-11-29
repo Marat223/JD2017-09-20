@@ -1,4 +1,4 @@
-package by.it.shelkovich.jd3_03.annotations;
+package by.it.shelkovich.jd3_03.dao.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

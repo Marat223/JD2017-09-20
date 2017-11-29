@@ -1,48 +1,52 @@
-package by.it.shelkovich.jd3_03.entities;
+package by.it.shelkovich.jd3_03.dao.entities;
 
-import by.it.shelkovich.jd3_03.annotations.Entity;
+import by.it.shelkovich.jd3_03.dao.annotations.Entity;
+
+import javax.xml.bind.annotation.*;
 
 @Entity(tableName="users")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name="user", propOrder = {
+        "id",
+        "username",
+        "passHash",
+        "description",
+        "role_id",
+        "name",
+        "surname",
+        "email",
+        "showPersonalData"
+
+})
 public class User {
-    private int id;
+    @XmlElement(required = true)
+    private long id;
+
+    @XmlElement(required = true)
     private String username;
+
+    @XmlElement(required = true)
     private String passHash;
+
+    @XmlElement(required = false)
     private String description;
+
+    @XmlElement(required = true)
     private int role_id;
+
+    @XmlElement(required = false)
     private String name;
+
+    @XmlElement(required = false)
     private String surname;
+
+    @XmlElement(required = true)
     private String email;
+
+    @XmlElement(required = true)
     private boolean showPersonalData;
 
-    public User(int id, String username, String passHash, String description, int role_id, String name, String surname, String email, boolean showPersonalData) {
-        this.id = id;
-        this.username = username;
-        this.passHash = passHash;
-        this.description = description;
-        this.role_id = role_id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.showPersonalData = showPersonalData;
-    }
 
-    public User() {
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", passHash='" + passHash + '\'' +
-                ", description='" + description + '\'' +
-                ", role_id=" + role_id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", showPersonalData=" + showPersonalData +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -64,7 +68,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + username.hashCode();
         result = 31 * result + passHash.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
@@ -76,11 +80,26 @@ public class User {
         return result;
     }
 
-    public int getId() {
+    public User(long id, String username, String passHash, String description, int role_id, String name, String surname, String email, boolean showPersonalData) {
+        this.id = id;
+        this.username = username;
+        this.passHash = passHash;
+        this.description = description;
+        this.role_id = role_id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.showPersonalData = showPersonalData;
+    }
+
+    public User() {
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

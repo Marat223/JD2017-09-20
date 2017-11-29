@@ -1,6 +1,8 @@
-package by.it.shelkovich.jd3_03;
+package by.it.shelkovich.jd3_03.dao;
 
-import by.it.shelkovich.jd3_03.annotations.Entity;
+
+
+import by.it.shelkovich.jd3_03.dao.annotations.Entity;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
@@ -8,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UniDAO<BeanType> {
+public class UniDAO<BeanType> implements IDAO<BeanType> {
     private Class<?> cl;
     private Field[] fields;
     private String tableName;
@@ -28,7 +30,7 @@ public class UniDAO<BeanType> {
         }
     }
 
-    public void create(BeanType bean) throws IllegalAccessException{
+    public boolean create(BeanType bean) throws IllegalAccessException{
         StringBuilder query = new StringBuilder();
         StringBuilder fieldNames = new StringBuilder();
         StringBuilder fieldValues = new StringBuilder();
@@ -41,12 +43,17 @@ public class UniDAO<BeanType> {
             delimiter = ", ";
         }
         query.append("INSERT INTO ").append(tableName).append(" (").append(fieldNames).append(") VALUES (").append(fieldValues).append(");");
-        int id = DataBase.exeChangeQuery(query.toString());
-        fields[0].setAccessible(true);
-        fields[0].set(bean, id);
+        Integer id = DataBase.exeCreateQuery(query.toString());
+        if (id != null) {
+            fields[0].setAccessible(true);
+            fields[0].set(bean, id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void update(BeanType bean) throws IllegalAccessException{
+    public Integer update(BeanType bean) throws IllegalAccessException{
         StringBuilder query = new StringBuilder();
 
         String delimiter = "";
@@ -59,10 +66,11 @@ public class UniDAO<BeanType> {
         }
         fields[0].setAccessible(true);
         query.append(" WHERE ").append(fields[0].getName()).append(" = '").append(fields[0].get(bean)).append("';");
-        DataBase.exeChangeQuery(query.toString());
+        return DataBase.exeChangeQuery(query.toString());
     }
 
-    public void read(BeanType bean) throws IllegalAccessException, SQLException {
+    public BeanType read(long id) throws IllegalAccessException, SQLException, InstantiationException {
+        BeanType bean = (BeanType) cl.newInstance();
         fields[0].setAccessible(true);
         String query = "SELECT * FROM "+tableName+" WHERE "+fields[0].getName()+" = '"+fields[0].get(bean)+"';";
         ResultSet rs = DataBase.exeSelectQuery(query);
@@ -71,19 +79,22 @@ public class UniDAO<BeanType> {
                 fillField(bean, fields[i], rs.getString(i+1));
             }
         }
+        return bean;
     }
 
-    public void delete(BeanType bean) throws IllegalAccessException, SQLException {
+    public boolean delete(long id) throws IllegalAccessException, SQLException {
         fields[0].setAccessible(true);
-        String query = "DELETE FROM "+tableName+" WHERE "+fields[0].getName()+" = '"+fields[0].get(bean)+"';";
-        DataBase.exeChangeQuery(query);
+        String query = "DELETE FROM "+tableName+" WHERE id='"+id+"';";
+        Integer count = DataBase.exeChangeQuery(query);
+        if (count != null && count == 1) return true;
+        else return false;
     }
 
     public List<BeanType> getAll() throws SQLException, IllegalAccessException, InstantiationException {
-        return getAll(null);
+        return get(null);
     }
 
-    public List<BeanType> getAll(String whereCond) throws SQLException, IllegalAccessException, InstantiationException {
+    public List<BeanType> get(String whereCond) throws SQLException, IllegalAccessException, InstantiationException {
         List<BeanType> result = new ArrayList<>();
 
         String where = "";

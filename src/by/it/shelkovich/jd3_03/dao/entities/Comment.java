@@ -1,12 +1,29 @@
-package by.it.shelkovich.jd3_03.entities;
+package by.it.shelkovich.jd3_03.dao.entities;
 
-import by.it.shelkovich.jd3_03.annotations.Entity;
+import by.it.shelkovich.jd3_03.dao.annotations.Entity;
+
+import javax.xml.bind.annotation.*;
 
 @Entity(tableName="comments")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name="comment", propOrder = {
+        "id",
+        "user_id",
+        "post_id",
+        "text"
+})
 public class Comment {
+    @XmlElement(required = true)
     private int id;
+
+    @XmlElement(required = true)
     private int user_id;
+
+    @XmlElement(required = true)
     private int post_id;
+
+    @XmlElement(required = true)
     private String text;
 
     public Comment() {

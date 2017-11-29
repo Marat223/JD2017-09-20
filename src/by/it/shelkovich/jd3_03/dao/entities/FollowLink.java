@@ -1,11 +1,26 @@
-package by.it.shelkovich.jd3_03.entities;
+package by.it.shelkovich.jd3_03.dao.entities;
 
-import by.it.shelkovich.jd3_03.annotations.Entity;
+import by.it.shelkovich.jd3_03.dao.annotations.Entity;
+
+import javax.xml.bind.annotation.*;
 
 @Entity(tableName="follow_links")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name="follow_link", propOrder = {
+        "id",
+        "user_id",
+        "follower_id"
+})
 public class FollowLink {
+
+    @XmlElement(required = true)
     private int id;
+
+    @XmlElement(required = true)
     private int user_id;
+
+    @XmlElement(required = true)
     private int follower_id;
 
     public FollowLink() {

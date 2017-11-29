@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package by.it.shelkovich.jd3_03;
+package by.it.shelkovich.jd3_03.dao;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -35,7 +35,23 @@ public class DataBase {
     }
     
     
-    public static synchronized int exeChangeQuery(String query){
+    public static synchronized Integer exeChangeQuery(String query){
+        System.out.println(query);
+        if (conn == null) init();
+        try {
+            if (conn.isClosed() || conn == null) init();
+            Statement statement = conn.createStatement();
+            int count = statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            return count;
+        } catch(Exception e){
+            System.out.println("Во время выполнения запроса "+ query +" к БД произошла ошибка");
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+    }
+
+    public static synchronized Integer exeCreateQuery(String query){
         System.out.println(query);
         if (conn == null) init();
         try {
@@ -47,13 +63,13 @@ public class DataBase {
                 if (keys.next())
                     return keys.getInt(1);
             }
-            return 0;
+            return null;
         } catch(Exception e){
             System.out.println("Во время выполнения запроса "+ query +" к БД произошла ошибка");
             System.out.println(e.getMessage());
-            return 0;
+            return null;
         }
-        
+
     }
     public static synchronized ResultSet exeSelectQuery(String query){
         if (conn == null) init();
