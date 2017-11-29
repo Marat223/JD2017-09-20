@@ -25,10 +25,6 @@ public class C_Init {
     }
 
 
-
-
-
-
     void run(){
         String[] queries = parse();
         for(String query: queries){

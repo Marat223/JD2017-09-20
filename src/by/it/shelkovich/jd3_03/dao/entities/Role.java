@@ -13,34 +13,16 @@ import javax.xml.bind.annotation.*;
 })
 public class Role {
     @XmlElement(required = true)
-    private int id;
+    private Long id;
     @XmlElement(required = true)
     private String role;
-
-    public Role(int id, String role) {
-        this.id = id;
-        this.role = role;
-    }
 
     public Role() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Role role1 = (Role) o;
-
-        if (id != role1.id) return false;
-        return role.equals(role1.role);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + role.hashCode();
-        return result;
+    public Role(Long id, String role) {
+        this.id = id;
+        this.role = role;
     }
 
     @Override
@@ -51,11 +33,11 @@ public class Role {
                 '}';
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,5 +47,24 @@ public class Role {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Role role1 = (Role) o;
+
+        if (!id.equals(role1.id)) return false;
+        return role.equals(role1.role);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + role.hashCode();
+        return result;
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Roles>
+    <Role>
+        <id>1</id>
+        <role>Администратор</role>
+    </Role>
+    <Role>
+        <id>2</id>
+        <role>Модератор</role>
+    </Role>
+    <Role>
+        <id>3</id>
+        <role>Пользователь</role>
+    </Role>
+</Roles>

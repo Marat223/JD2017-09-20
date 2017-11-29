@@ -15,25 +15,18 @@ import javax.xml.bind.annotation.*;
 })
 public class Comment {
     @XmlElement(required = true)
-    private int id;
+    private Long id;
 
     @XmlElement(required = true)
-    private int user_id;
+    private Long user_id;
 
     @XmlElement(required = true)
-    private int post_id;
+    private Long post_id;
 
     @XmlElement(required = true)
     private String text;
 
     public Comment() {
-    }
-
-    public Comment(int id, int user_id, int post_id, String text) {
-        this.id = id;
-        this.user_id = user_id;
-        this.post_id = post_id;
-        this.text = text;
     }
 
     @Override
@@ -53,42 +46,43 @@ public class Comment {
 
         Comment comment = (Comment) o;
 
-        if (id != comment.id) return false;
-        if (user_id != comment.user_id) return false;
-        if (post_id != comment.post_id) return false;
+        if (!id.equals(comment.id)) return false;
+        if (!user_id.equals(comment.user_id)) return false;
+        if (!post_id.equals(comment.post_id)) return false;
         return text.equals(comment.text);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + user_id;
-        result = 31 * result + post_id;
+        int result = id.hashCode();
+        result = 31 * result + user_id.hashCode();
+        result = 31 * result + post_id.hashCode();
         result = 31 * result + text.hashCode();
         return result;
     }
 
-    public int getId() {
+    public Long getId() {
+
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 
-    public int getPost_id() {
+    public Long getPost_id() {
         return post_id;
     }
 
-    public void setPost_id(int post_id) {
+    public void setPost_id(Long post_id) {
         this.post_id = post_id;
     }
 
@@ -97,6 +91,14 @@ public class Comment {
     }
 
     public void setText(String text) {
+        this.text = text;
+    }
+
+    public Comment(Long id, Long user_id, Long post_id, String text) {
+
+        this.id = id;
+        this.user_id = user_id;
+        this.post_id = post_id;
         this.text = text;
     }
 }

@@ -15,21 +15,15 @@ import javax.xml.bind.annotation.*;
 public class FollowLink {
 
     @XmlElement(required = true)
-    private int id;
+    private Long id;
 
     @XmlElement(required = true)
-    private int user_id;
+    private Long user_id;
 
     @XmlElement(required = true)
-    private int follower_id;
+    private Long follower_id;
 
     public FollowLink() {
-    }
-
-    public FollowLink(int id, int user_id, int follower_id) {
-        this.id = id;
-        this.user_id = user_id;
-        this.follower_id = follower_id;
     }
 
     @Override
@@ -48,40 +42,48 @@ public class FollowLink {
 
         FollowLink that = (FollowLink) o;
 
-        if (id != that.id) return false;
-        if (user_id != that.user_id) return false;
-        return follower_id == that.follower_id;
+        if (!id.equals(that.id)) return false;
+        if (!user_id.equals(that.user_id)) return false;
+        return follower_id.equals(that.follower_id);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + user_id;
-        result = 31 * result + follower_id;
+        int result = id.hashCode();
+        result = 31 * result + user_id.hashCode();
+        result = 31 * result + follower_id.hashCode();
         return result;
     }
 
-    public int getId() {
+    public Long getId() {
+
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 
-    public int getFollower_id() {
+    public Long getFollower_id() {
         return follower_id;
     }
 
-    public void setFollower_id(int follower_id) {
+    public void setFollower_id(Long follower_id) {
+        this.follower_id = follower_id;
+    }
+
+    public FollowLink(Long id, Long user_id, Long follower_id) {
+
+        this.id = id;
+        this.user_id = user_id;
         this.follower_id = follower_id;
     }
 }

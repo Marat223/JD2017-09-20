@@ -1,7 +1,5 @@
 package by.it.shelkovich.jd3_03.dao;
 
-
-
 import by.it.shelkovich.jd3_03.dao.annotations.Entity;
 
 import java.lang.reflect.Field;
@@ -35,7 +33,7 @@ public class UniDAO<BeanType> implements IDAO<BeanType> {
         StringBuilder fieldNames = new StringBuilder();
         StringBuilder fieldValues = new StringBuilder();
         String delimiter = "";
-        for (int i = 1; i < fields.length; i++) {
+        for (int i = 0; i < fields.length; i++) {
             Field field = fields[i];
             field.setAccessible(true);
             fieldNames.append(delimiter).append(field.getName());
@@ -43,7 +41,7 @@ public class UniDAO<BeanType> implements IDAO<BeanType> {
             delimiter = ", ";
         }
         query.append("INSERT INTO ").append(tableName).append(" (").append(fieldNames).append(") VALUES (").append(fieldValues).append(");");
-        Integer id = DataBase.exeCreateQuery(query.toString());
+        Long id = DataBase.exeCreateQuery(query.toString());
         if (id != null) {
             fields[0].setAccessible(true);
             fields[0].set(bean, id);
@@ -57,7 +55,7 @@ public class UniDAO<BeanType> implements IDAO<BeanType> {
         StringBuilder query = new StringBuilder();
 
         String delimiter = "";
-        query.append("UPDATE ").append(tableName).append("SET ");
+        query.append("UPDATE ").append(tableName).append(" SET ");
         for (int i = 1; i < fields.length; i++) {
             Field field = fields[i];
             field.setAccessible(true);
@@ -72,14 +70,43 @@ public class UniDAO<BeanType> implements IDAO<BeanType> {
     public BeanType read(long id) throws IllegalAccessException, SQLException, InstantiationException {
         BeanType bean = (BeanType) cl.newInstance();
         fields[0].setAccessible(true);
-        String query = "SELECT * FROM "+tableName+" WHERE "+fields[0].getName()+" = '"+fields[0].get(bean)+"';";
+        String query = "SELECT * FROM "+tableName+" WHERE id = '" +id+"';";
         ResultSet rs = DataBase.exeSelectQuery(query);
         if(rs.next()){
             for (int i = 0; i < fields.length; i++) {
                 fillField(bean, fields[i], rs.getString(i+1));
             }
-        }
+        } else return null;
         return bean;
+    }
+
+    @Override
+    public List<BeanType> read(BeanType bean) throws Exception {
+        List<BeanType> result = new ArrayList<>();
+
+        StringBuilder where = new StringBuilder(" WHERE ");
+        String delimiter = "";
+        for (int i = 0; i < fields.length; i++) {
+            Field field = fields[i];
+            field.setAccessible(true);
+            Object fieldValue = field.get(bean);
+            if (fieldValue != null){
+                where.append(delimiter).append(field.getName()).append(" = '").append(fieldValue).append("'");
+                delimiter = " AND ";
+            }
+        }
+
+        String query = "SELECT * FROM "+tableName + where;
+
+        ResultSet rs = DataBase.exeSelectQuery(query);
+        while(rs.next()){
+            BeanType newBean = (BeanType) cl.newInstance();
+            for (int i = 0; i < fields.length; i++) {
+                fillField(newBean, fields[i], rs.getString(i+1));
+            }
+            result.add(newBean);
+        }
+        return result;
     }
 
     public boolean delete(long id) throws IllegalAccessException, SQLException {
@@ -122,7 +149,7 @@ public class UniDAO<BeanType> implements IDAO<BeanType> {
         else if(field.getType() == Double.class || strType.equals("double")) field.set(b, Double.parseDouble(value));
         else if(field.getType() == Float.class || strType.equals("float")) field.set(b, Float.parseFloat(value));
         else if(field.getType() == Byte.class || strType.equals("byte")) field.set(b, Byte.parseByte(value));
-        else if(field.getType() == String.class) field.set(b, value);
+        else if(field.getType() == String.class) field.set(b, (value.equals("null")? null: value));
     }
 
 

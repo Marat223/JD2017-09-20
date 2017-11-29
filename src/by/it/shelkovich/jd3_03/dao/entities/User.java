@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.*;
 })
 public class User {
     @XmlElement(required = true)
-    private long id;
+    private Long id;
 
     @XmlElement(required = true)
     private String username;
@@ -32,7 +32,7 @@ public class User {
     private String description;
 
     @XmlElement(required = true)
-    private int role_id;
+    private Long role_id;
 
     @XmlElement(required = false)
     private String name;
@@ -44,9 +44,23 @@ public class User {
     private String email;
 
     @XmlElement(required = true)
-    private boolean showPersonalData;
+    private Boolean showPersonalData;
 
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", passHash='" + passHash + '\'' +
+                ", description='" + description + '\'' +
+                ", role_id=" + role_id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", showPersonalData=" + showPersonalData +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -55,51 +69,37 @@ public class User {
 
         User user = (User) o;
 
-        if (id != user.id) return false;
-        if (role_id != user.role_id) return false;
-        if (showPersonalData != user.showPersonalData) return false;
+        if (!id.equals(user.id)) return false;
         if (!username.equals(user.username)) return false;
         if (!passHash.equals(user.passHash)) return false;
         if (description != null ? !description.equals(user.description) : user.description != null) return false;
+        if (!role_id.equals(user.role_id)) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-        return email.equals(user.email);
+        if (!email.equals(user.email)) return false;
+        return showPersonalData.equals(user.showPersonalData);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
+        int result = id.hashCode();
         result = 31 * result + username.hashCode();
         result = 31 * result + passHash.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + role_id;
+        result = 31 * result + role_id.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + email.hashCode();
-        result = 31 * result + (showPersonalData ? 1 : 0);
+        result = 31 * result + showPersonalData.hashCode();
         return result;
     }
 
-    public User(long id, String username, String passHash, String description, int role_id, String name, String surname, String email, boolean showPersonalData) {
-        this.id = id;
-        this.username = username;
-        this.passHash = passHash;
-        this.description = description;
-        this.role_id = role_id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.showPersonalData = showPersonalData;
-    }
+    public Long getId() {
 
-    public User() {
-    }
-
-    public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -127,11 +127,11 @@ public class User {
         this.description = description;
     }
 
-    public int getRole_id() {
+    public Long getRole_id() {
         return role_id;
     }
 
-    public void setRole_id(int role_id) {
+    public void setRole_id(Long role_id) {
         this.role_id = role_id;
     }
 
@@ -159,11 +159,28 @@ public class User {
         this.email = email;
     }
 
-    public boolean isShowPersonalData() {
+    public Boolean getShowPersonalData() {
         return showPersonalData;
     }
 
-    public void setShowPersonalData(boolean showPersonalData) {
+    public void setShowPersonalData(Boolean showPersonalData) {
         this.showPersonalData = showPersonalData;
+    }
+
+    public User(Long id, String username, String passHash, String description, Long role_id, String name, String surname, String email, Boolean showPersonalData) {
+
+        this.id = id;
+        this.username = username;
+        this.passHash = passHash;
+        this.description = description;
+        this.role_id = role_id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.showPersonalData = showPersonalData;
+    }
+
+    public User() {
+
     }
 }

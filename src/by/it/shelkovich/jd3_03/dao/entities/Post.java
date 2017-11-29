@@ -19,10 +19,10 @@ import javax.xml.bind.annotation.*;
 })
 public class Post {
     @XmlElement(required = true)
-    private int id;
+    private Long id;
 
     @XmlElement(required = true)
-    private int user_id;
+    private Long user_id;
 
     @XmlElement(required = true)
     private String imageURL;
@@ -31,7 +31,7 @@ public class Post {
     private String description;
 
     @XmlElement(required = true)
-    private int likes;
+    private Integer likes;
 
     @XmlElement(required = false)
     private String lat;
@@ -40,16 +40,6 @@ public class Post {
     private String lng;
 
     public Post() {
-    }
-
-    public Post(int id, int user_id, String imageURL, String description, int likes, String lat, String lng) {
-        this.id = id;
-        this.user_id = user_id;
-        this.imageURL = imageURL;
-        this.description = description;
-        this.likes = likes;
-        this.lat = lat;
-        this.lng = lng;
     }
 
     @Override
@@ -72,40 +62,41 @@ public class Post {
 
         Post post = (Post) o;
 
-        if (id != post.id) return false;
-        if (user_id != post.user_id) return false;
-        if (likes != post.likes) return false;
+        if (!id.equals(post.id)) return false;
+        if (!user_id.equals(post.user_id)) return false;
         if (!imageURL.equals(post.imageURL)) return false;
         if (!description.equals(post.description)) return false;
+        if (!likes.equals(post.likes)) return false;
         if (lat != null ? !lat.equals(post.lat) : post.lat != null) return false;
         return lng != null ? lng.equals(post.lng) : post.lng == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + user_id;
+        int result = id.hashCode();
+        result = 31 * result + user_id.hashCode();
         result = 31 * result + imageURL.hashCode();
         result = 31 * result + description.hashCode();
-        result = 31 * result + likes;
+        result = 31 * result + likes.hashCode();
         result = 31 * result + (lat != null ? lat.hashCode() : 0);
         result = 31 * result + (lng != null ? lng.hashCode() : 0);
         return result;
     }
 
-    public int getId() {
+    public Long getId() {
+
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 
@@ -125,11 +116,11 @@ public class Post {
         this.description = description;
     }
 
-    public int getLikes() {
+    public Integer getLikes() {
         return likes;
     }
 
-    public void setLikes(int likes) {
+    public void setLikes(Integer likes) {
         this.likes = likes;
     }
 
@@ -146,6 +137,17 @@ public class Post {
     }
 
     public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public Post(Long id, Long user_id, String imageURL, String description, Integer likes, String lat, String lng) {
+
+        this.id = id;
+        this.user_id = user_id;
+        this.imageURL = imageURL;
+        this.description = description;
+        this.likes = likes;
+        this.lat = lat;
         this.lng = lng;
     }
 }

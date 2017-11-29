@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Comments>
+    <Comment>
+        <id>1</id>
+        <user_id>1</user_id>
+        <post_id>2</post_id>
+        <text>Круто! Очень симпатично вышло!</text>
+    </Comment>
+    <Comment>
+        <id>2</id>
+        <user_id>3</user_id>
+        <post_id>2</post_id>
+        <text>Спасибо, приходите ещё!</text>
+    </Comment>
+</Comments>

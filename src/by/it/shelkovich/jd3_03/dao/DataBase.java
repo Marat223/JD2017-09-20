@@ -51,7 +51,7 @@ public class DataBase {
         
     }
 
-    public static synchronized Integer exeCreateQuery(String query){
+    public static synchronized Long exeCreateQuery(String query){
         System.out.println(query);
         if (conn == null) init();
         try {
@@ -61,7 +61,7 @@ public class DataBase {
             if (count == 1) {
                 ResultSet keys = statement.getGeneratedKeys();
                 if (keys.next())
-                    return keys.getInt(1);
+                    return keys.getLong(1);
             }
             return null;
         } catch(Exception e){
@@ -72,6 +72,7 @@ public class DataBase {
 
     }
     public static synchronized ResultSet exeSelectQuery(String query){
+        System.out.println(query);
         if (conn == null) init();
         try {
             Statement statement = conn.createStatement();
