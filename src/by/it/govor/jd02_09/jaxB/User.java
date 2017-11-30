@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
         "name",
         "nick",
         "telephone",
-        "address"
+        "Address"
 })
 public class User {
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class) //тип адаптера
@@ -69,7 +69,7 @@ public class User {
 
 
     @XmlRootElement
-    @XmlType(name = " address ", propOrder = {
+    @XmlType(name = " Address ", propOrder = {
             "country",
             "city"
     })

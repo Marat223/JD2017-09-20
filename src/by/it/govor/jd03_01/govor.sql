@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:2016
--- Время создания: Ноя 28 2017 г., 13:05
+-- Время создания: Ноя 30 2017 г., 12:04
 -- Версия сервера: 10.1.10-MariaDB
 -- Версия PHP: 5.6.15
 
@@ -47,10 +47,10 @@ INSERT INTO `ad` (`ID`, `processor`, `video_card`, `motherboard`, `ram`, `power_
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `adres`
+-- Структура таблицы `Address`
 --
 
-CREATE TABLE `adres` (
+CREATE TABLE `address` (
   `ID` int(11) NOT NULL,
   `Country` varchar(15) NOT NULL,
   `City` varchar(15) NOT NULL,
@@ -86,6 +86,8 @@ INSERT INTO `role` (`ID`, `Role`) VALUES
 
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
+  `Login` varchar(15) NOT NULL,
+  `Password` varchar(15) NOT NULL,
   `Name` varchar(20) NOT NULL,
   `Nick` varchar(10) NOT NULL,
   `Telephone` int(12) NOT NULL,
@@ -96,8 +98,16 @@ CREATE TABLE `user` (
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`ID`, `Name`, `Nick`, `Telephone`, `role_ID`) VALUES
-(1, '???????', '?????', 345332, 1);
+INSERT INTO `user` (`ID`, `Login`, `Password`, `Name`, `Nick`, `Telephone`, `role_ID`) VALUES
+(1, 'dfgdg', 'dgdg', 'WTF', 'IO', 345332, 1),
+(3, 'dddd', 'ffff', 'Kto-to', 'Kto', 464363, 3),
+(3757, 'gggg', 'gggg', 'Name 53535-2', 'Nagibator2', 53325, 2),
+(3763, 'Login1', 'pass', 'name', 'nick', 243, 1),
+(3764, 'Login1', 'pass', 'name', 'nick', 243, 1),
+(3765, 'Login1', 'pass', 'name', 'nick', 243, 1),
+(3766, 'Login1', 'pass', 'name', 'nick', 243, 1),
+(3767, 'Login1', 'pass', 'name', 'nick', 243, 1),
+(3771, 'Login1', 'pass', 'name', 'nick', 243, 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -111,9 +121,9 @@ ALTER TABLE `ad`
   ADD KEY `fk_ad_user_idx` (`user_ID`);
 
 --
--- Индексы таблицы `adres`
+-- Индексы таблицы `Address`
 --
-ALTER TABLE `adres`
+ALTER TABLE `address`
   ADD PRIMARY KEY (`ID`,`user_ID`),
   ADD KEY `fk_adres_user1_idx` (`user_ID`);
 
@@ -140,9 +150,9 @@ ALTER TABLE `user`
 ALTER TABLE `ad`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT для таблицы `adres`
+-- AUTO_INCREMENT для таблицы `Address`
 --
-ALTER TABLE `adres`
+ALTER TABLE `address`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `role`
@@ -153,7 +163,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3772;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
@@ -165,9 +175,9 @@ ALTER TABLE `ad`
   ADD CONSTRAINT `fk_ad_user` FOREIGN KEY (`user_ID`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения внешнего ключа таблицы `adres`
+-- Ограничения внешнего ключа таблицы `Address`
 --
-ALTER TABLE `adres`
+ALTER TABLE `address`
   ADD CONSTRAINT `fk_adres_user1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
