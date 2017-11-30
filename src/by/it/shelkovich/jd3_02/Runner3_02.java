@@ -17,7 +17,7 @@ public class Runner3_02 {
         TaskC.createIndexesIncrementsRestricts();
         TaskA.run();
         TaskB.run();
-
+        //В пакете jd3_03/dao лежит CRUD Unit-test для дао (по заданию на Ц)
 
     }
 }

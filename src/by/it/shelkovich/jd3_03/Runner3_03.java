@@ -18,23 +18,17 @@ import java.util.List;
 public class Runner3_03 {
     public static void main(String[] args) {
         DAO dao = DAO.getInstance();
-        User user;
+        //Задание А
+        //Вывод пользователей с ролями на экран
+        //В пакете дао есть CRUD юнит-тест
 
         try {
-//            //user = dao.userDAO.read(1);
-//            Roles roles = new Roles(dao.roleDAO.getAll());
-//            //System.out.println(users);
-//
-//            JAXBContext jc = JAXBContext.newInstance(Roles.class);
-//            Marshaller m=jc.createMarshaller();
-//            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//            File file = new File("src/by/it/shelkovich/jd3_03/xmlSource/Roles.xml");
-//            FileOutputStream os = new FileOutputStream(file);
-//            m.marshal(roles,os);
 
-
-
-
+            List<User> users = dao.userDAO.getAll();
+            for (User user: users){
+                Role role = dao.roleDAO.read(user.getRole_id());
+                System.out.println("User: "+user.getUsername()+" | Role: "+role.getRole());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
