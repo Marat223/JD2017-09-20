@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `meshchenko`.`crm_users` (
   `Password` VARCHAR(1023) NOT NULL,
   `PhoneNumber` VARCHAR(255) NULL DEFAULT NULL,
   `Email` VARCHAR(255) NOT NULL,
-  `EmailConfirmed` TINYINT(1) NOT NULL DEFAULT '0',
+  `EmailConfirmed` bit(1) NOT NULL DEFAULT b'0',
   `RoleId` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
