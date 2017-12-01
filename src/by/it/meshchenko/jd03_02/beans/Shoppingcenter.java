@@ -7,13 +7,13 @@ public class Shoppingcenter {
     private int id;
     private String name;
     private int addressId;
-    private Optional<Float> lat;
-    private Optional<Float> lng;
-    private Optional<String> description;
+    private Float lat;
+    private Float lng;
+    private String description;
 
     public Shoppingcenter() {}
 
-    public Shoppingcenter(int id, String name, int addressId, Optional<Float> lat, Optional<Float> lng, Optional<String> description) {
+    public Shoppingcenter(int id, String name, int addressId, Float lat, Float lng, String description) {
         this.id = id;
         this.name = name;
         this.addressId = addressId;
@@ -46,27 +46,27 @@ public class Shoppingcenter {
         this.addressId = addressId;
     }
 
-    public Optional<Float> getLat() {
+    public Float getLat() {
         return lat;
     }
 
-    public void setLat(Optional<Float> lat) {
+    public void setLat(Float lat) {
         this.lat = lat;
     }
 
-    public Optional<Float> getLng() {
+    public Float getLng() {
         return lng;
     }
 
-    public void setLng(Optional<Float> lng) {
+    public void setLng(Float lng) {
         this.lng = lng;
     }
 
-    public Optional<String> getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Optional<String> description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

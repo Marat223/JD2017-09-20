@@ -6,15 +6,15 @@ import java.util.Optional;
 public class LeaseRoom {
 
     private int id;
-    private Optional<Float> price;
-    private Optional<java.sql.Date> dateStartLease;
-    private Optional<java.sql.Date> dateStopLease;
+    private Float price;
+    private java.sql.Date dateStartLease;
+    private java.sql.Date dateStopLease;
     private int roomId;
     private int userId;
 
     public LeaseRoom() {}
 
-    public LeaseRoom(int id, Optional<Float> price, Optional<Date> dateStartLease, Optional<Date> dateStopLease, int roomId, int userId) {
+    public LeaseRoom(int id, Float price, Date dateStartLease, Date dateStopLease, int roomId, int userId) {
         this.id = id;
         this.price = price;
         this.dateStartLease = dateStartLease;
@@ -31,27 +31,27 @@ public class LeaseRoom {
         this.id = id;
     }
 
-    public Optional<Float> getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Optional<Float> price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
-    public Optional<Date> getDateStartLease() {
+    public Date getDateStartLease() {
         return dateStartLease;
     }
 
-    public void setDateStartLease(Optional<Date> dateStartLease) {
+    public void setDateStartLease(Date dateStartLease) {
         this.dateStartLease = dateStartLease;
     }
 
-    public Optional<Date> getDateStopLease() {
+    public Date getDateStopLease() {
         return dateStopLease;
     }
 
-    public void setDateStopLease(Optional<Date> dateStopLease) {
+    public void setDateStopLease(Date dateStopLease) {
         this.dateStopLease = dateStopLease;
     }
 

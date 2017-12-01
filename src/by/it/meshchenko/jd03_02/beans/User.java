@@ -7,14 +7,14 @@ public class User {
     private int id;
     private String name;
     private String password;
-    private Optional<String> phoneNumber;
+    private String phoneNumber;
     private String email;
     private boolean emailConfirmed;
-    private Optional<Integer> roleId;
+    private Integer roleId;
 
     public User() {}
 
-    public User(int id, String name, String password, Optional<String> phoneNumber, String email, boolean emailConfirmed, Optional<Integer> roleId) {
+    public User(int id, String name, String password, String phoneNumber, String email, boolean emailConfirmed, Integer roleId) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -48,11 +48,11 @@ public class User {
         this.password = password;
     }
 
-    public Optional<String> getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Optional<String> phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -72,11 +72,11 @@ public class User {
         this.emailConfirmed = emailConfirmed;
     }
 
-    public Optional<Integer> getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Optional<Integer> roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 
@@ -89,20 +89,20 @@ public class User {
 
         if (id != user.id) return false;
         if (emailConfirmed != user.emailConfirmed) return false;
-        if (!name.equals(user.name)) return false;
-        if (!password.equals(user.password)) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (phoneNumber != null ? !phoneNumber.equals(user.phoneNumber) : user.phoneNumber != null) return false;
-        if (!email.equals(user.email)) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
         return roleId != null ? roleId.equals(user.roleId) : user.roleId == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + password.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        result = 31 * result + email.hashCode();
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (emailConfirmed ? 1 : 0);
         result = 31 * result + (roleId != null ? roleId.hashCode() : 0);
         return result;

@@ -14,48 +14,49 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(Theories.class)
-//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
 public class UserCRUDTest {
 
-
-    //private static UserCRUD userCRUD;
-    //private static User user;
     @DataPoints
     public static UserCRUD userCRUD = new UserCRUD();
     @DataPoints
     public static User user = new User(0, "testAdmin", "super",
-                null, "test9@sup.su", false,
-                Optional.of(new Integer(1)));
+                null, "test11@sup.su", false,1);
 
 
-    @Test
-    public void create() throws Exception {
-        User temp = UserCRUDTest.userCRUD.create(user);
-        UserCRUDTest.user.setId(temp.getId());
-        System.out.println("id=" + UserCRUDTest.user.getId() );
-        assertEquals(true, temp.equals(UserCRUDTest.user));
+    User create() throws Exception {
+        User temp = userCRUD.create(user);
+        user.setId(temp.getId());
+        return temp;
     }
 
-    @Test
-    public void read() throws Exception {
-        System.out.println("id=" + UserCRUDTest.user.getId() );
-        User temp = UserCRUDTest.userCRUD.read(UserCRUDTest.user.getId());
-        UserCRUDTest.user.setId(temp.getId());
-        assertEquals(true, temp.equals(UserCRUDTest.user));
+    User read() throws Exception {
+        User temp = userCRUD.read(UserCRUDTest.user.getId());
+        user.setId(temp.getId());
+        return temp;
     }
 
-    @Test
-    public void update() throws Exception {
+    User update() throws Exception {
         user.setName("testAdmin#1");
         User temp = userCRUD.update(user);
         user.setId(temp.getId());
-        assertEquals(true, temp.equals(user));
+        return temp;
+    }
+
+    boolean delete() throws Exception {
+        return userCRUD.delete(user);
     }
 
     @Test
-    public void delete() throws Exception {
-        assertEquals(true, userCRUD.delete(user));
+    public void testOrder1() throws Exception {
+
+        assertEquals(true, user.equals(create()));
+
+        assertEquals(true, user.equals(read()));
+
+        assertEquals(true, user.equals(update()));
+
+        assertEquals(true, delete());
     }
 
 }

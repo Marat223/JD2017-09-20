@@ -6,12 +6,12 @@ public class Room {
 
     private int id;
     private String name;
-    private Optional<Float> square;
+    private Float square;
     private int shoppingCenterId;
 
     public Room() {}
 
-    public Room(int id, String name, Optional<Float> square, int shoppingCenterId) {
+    public Room(int id, String name, Float square, int shoppingCenterId) {
         this.id = id;
         this.name = name;
         this.square = square;
@@ -34,11 +34,11 @@ public class Room {
         this.name = name;
     }
 
-    public Optional<Float> getSquare() {
+    public Float getSquare() {
         return square;
     }
 
-    public void setSquare(Optional<Float> square) {
+    public void setSquare(Float square) {
         this.square = square;
     }
 

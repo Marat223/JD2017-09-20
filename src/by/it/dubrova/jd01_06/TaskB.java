@@ -8,7 +8,7 @@ import java.util.regex.*;
 
 public class TaskB {
     public static void main(String[] args) {
-        //boolean test = isVowels("Aня");
+        //boolean test1 = isVowels("Aня");
 
     //    String[] txt = Data.lukomor.split(" ");
     //   for (String s : txt)

@@ -8,8 +8,7 @@ import java.util.Optional;
 public class UserTest {
     public static void main(String[] args) {
         User user = new User(0, "superAdmin", "super",
-                null, "super@sup.su", false,
-                Optional.of(new Integer(1)));
+                null, "super@sup.su", false,1);
         try {
             //проверка CRUD для пользователей
             UserCRUD userCRUD = new UserCRUD();

@@ -22,10 +22,10 @@ public class UserCRUD {
                 user.getRoleId() == null ? "" : ",RoleId",
                 user.getName(), //PhoneNumber
                 user.getPassword(),
-                user.getPhoneNumber() == null ? "" : "\'" + user.getPhoneNumber().get() + "\',",
+                user.getPhoneNumber() == null ? "" : "\'" + user.getPhoneNumber() + "\',",
                 user.getEmail(),
                 user.isEmailConfirmed() ? 1 : 0,
-                user.getRoleId() == null ? "" : "," + user.getRoleId().get()
+                user.getRoleId() == null ? "" : "," + user.getRoleId()
         );
         System.out.println(createUserSQL);
         try (
@@ -60,11 +60,11 @@ public class UserCRUD {
                         resultSet.getString("Name"),
                         resultSet.getString("Password"),
                         (tempObj = resultSet.getObject("PhoneNumber")) == null
-                                ? null : Optional.of(tempObj.toString()),
+                                ? null : tempObj.toString(),
                         resultSet.getString("Email"),
                         resultSet.getBoolean("EmailConfirmed"),
                         (tempObj = resultSet.getObject("RoleId")) == null
-                                ? null : Optional.of(Integer.valueOf(tempObj.toString())));
+                                ? null : Integer.valueOf(tempObj.toString()));
             }
         }
         return userResult;
@@ -79,10 +79,10 @@ public class UserCRUD {
                         "EmailConfirmed = %d%s WHERE Id = %d",
                 user.getName(),
                 user.getPassword(),
-                user.getPhoneNumber() == null ? "" : "PhoneNumber=\'" + user.getPhoneNumber().get() + "\',",
+                user.getPhoneNumber() == null ? "" : "PhoneNumber=\'" + user.getPhoneNumber() + "\',",
                 user.getEmail(),
                 user.isEmailConfirmed() ? 1 : 0,
-                user.getRoleId() == null ? "" : ",RoleId=" + user.getRoleId().get().toString(),
+                user.getRoleId() == null ? "" : ",RoleId=" + user.getRoleId().toString(),
                 user.getId()
         );
         System.out.println(updateUserSQL);
