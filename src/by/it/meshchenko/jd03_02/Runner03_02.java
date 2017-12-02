@@ -16,6 +16,7 @@ public class Runner03_02 {
 
         //--->   meshchenko/jd03_02/crud/
 
+
         //  Разработайте программу которая выполняет для таблицы набор из CRUD-операций.
         //      Для корректной проверки используйте следующий порядок:
         //      Create+ Read (вывод наконсоль созданной записи).
@@ -23,6 +24,7 @@ public class Runner03_02 {
         //      Delete + сообщение
 
         //--->   meshchenko/jd03_02/test1/UserTest.java
+
 
         // B.
         //  Разработайте программу, которая выводит всех пользователей с их текстовыми
@@ -49,6 +51,6 @@ public class Runner03_02 {
 
         //      Сделайте тестовое покрытие jUnit для CRUD
 
-        //--->   meshchenko/jd03_02/test1/junit/UserCRUDTest.java
+        //--->   meshchenko/jd03_02/test1/junit/
     }
 }

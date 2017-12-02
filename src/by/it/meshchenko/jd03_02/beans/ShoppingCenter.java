@@ -1,8 +1,6 @@
 package by.it.meshchenko.jd03_02.beans;
 
-import java.util.Optional;
-
-public class Shoppingcenter {
+public class ShoppingCenter {
 
     private int id;
     private String name;
@@ -11,9 +9,9 @@ public class Shoppingcenter {
     private Float lng;
     private String description;
 
-    public Shoppingcenter() {}
+    public ShoppingCenter() {}
 
-    public Shoppingcenter(int id, String name, int addressId, Float lat, Float lng, String description) {
+    public ShoppingCenter(int id, String name, int addressId, Float lat, Float lng, String description) {
         this.id = id;
         this.name = name;
         this.addressId = addressId;
@@ -75,7 +73,7 @@ public class Shoppingcenter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Shoppingcenter that = (Shoppingcenter) o;
+        ShoppingCenter that = (ShoppingCenter) o;
 
         if (id != that.id) return false;
         if (addressId != that.addressId) return false;
@@ -98,7 +96,7 @@ public class Shoppingcenter {
 
     @Override
     public String toString() {
-        return "Shoppingcenter{" +
+        return "ShoppingCenter{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", addressId=" + addressId +

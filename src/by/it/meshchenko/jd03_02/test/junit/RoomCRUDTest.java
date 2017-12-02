@@ -1,44 +1,34 @@
 package by.it.meshchenko.jd03_02.test.junit;
 
-import by.it.meshchenko.jd03_02.beans.User;
-import by.it.meshchenko.jd03_02.crud.UserCRUD;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
+import by.it.meshchenko.jd03_02.beans.Room;
+import by.it.meshchenko.jd03_02.crud.RoomCRUD;
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.runner.RunWith;
-
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
-
-public class UserCRUDTest {
-
+public class RoomCRUDTest {
     @DataPoints
-    public static UserCRUD itemCRUD = new UserCRUD();
+    public static RoomCRUD itemCRUD = new RoomCRUD();
     @DataPoints
-    public static User item = new User(0, "testAdmin", "super",
-                null, "test11@sup.su", false,1);
+    public static Room item = new Room(0, "testName", null,1);
 
 
-    User create() throws Exception {
-        User temp = itemCRUD.create(item);
+    Room create() throws Exception {
+        Room temp = itemCRUD.create(item);
         item.setId(temp.getId());
         return temp;
     }
 
-    User read() throws Exception {
-        User temp = itemCRUD.read(UserCRUDTest.item.getId());
+    Room read() throws Exception {
+        Room temp = itemCRUD.read(RoomCRUDTest.item.getId());
         item.setId(temp.getId());
         return temp;
     }
 
-    User update() throws Exception {
+    Room update() throws Exception {
         item.setName("testAdmin#1");
-        User temp = itemCRUD.update(item);
+        Room temp = itemCRUD.update(item);
         item.setId(temp.getId());
         return temp;
     }
@@ -58,5 +48,4 @@ public class UserCRUDTest {
 
         assertEquals(true, delete());
     }
-
 }

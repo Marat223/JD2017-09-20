@@ -1,44 +1,35 @@
 package by.it.meshchenko.jd03_02.test.junit;
 
-import by.it.meshchenko.jd03_02.beans.User;
-import by.it.meshchenko.jd03_02.crud.UserCRUD;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
+import by.it.meshchenko.jd03_02.beans.City;
+import by.it.meshchenko.jd03_02.crud.CityCRUD;
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.runner.RunWith;
-
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
-
-public class UserCRUDTest {
+public class CityCRUDTest {
 
     @DataPoints
-    public static UserCRUD itemCRUD = new UserCRUD();
+    public static CityCRUD itemCRUD = new CityCRUD();
     @DataPoints
-    public static User item = new User(0, "testAdmin", "super",
-                null, "test11@sup.su", false,1);
+    public static City item = new City(0, "Gomel", 1);
 
 
-    User create() throws Exception {
-        User temp = itemCRUD.create(item);
+    City create() throws Exception {
+        City temp = itemCRUD.create(item);
         item.setId(temp.getId());
         return temp;
     }
 
-    User read() throws Exception {
-        User temp = itemCRUD.read(UserCRUDTest.item.getId());
+    City read() throws Exception {
+        City temp = itemCRUD.read(CityCRUDTest.item.getId());
         item.setId(temp.getId());
         return temp;
     }
 
-    User update() throws Exception {
+    City update() throws Exception {
         item.setName("testAdmin#1");
-        User temp = itemCRUD.update(item);
+        City temp = itemCRUD.update(item);
         item.setId(temp.getId());
         return temp;
     }
@@ -58,5 +49,4 @@ public class UserCRUDTest {
 
         assertEquals(true, delete());
     }
-
 }

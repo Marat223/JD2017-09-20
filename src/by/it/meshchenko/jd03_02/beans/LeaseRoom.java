@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.Optional;
 
 public class LeaseRoom {
-
+//java.util.Date newDate = result.getTimestamp("VALUEDATE");
     private int id;
     private Float price;
     private java.sql.Date dateStartLease;
