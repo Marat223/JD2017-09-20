@@ -3,23 +3,104 @@ package by.it.meshchenko.jd03_02;
 import by.it.meshchenko.jd03_01.A_AddData;
 import by.it.meshchenko.jd03_01.A_AddUsers;
 import by.it.meshchenko.jd03_01.B_AddRoles;
+import by.it.meshchenko.jd03_02.beans.*;
+import by.it.meshchenko.jd03_02.crud.*;
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
 class TaskC_AddData {
-    public static void main(String[] args){
+    public static void main(String[] args) throws SQLException{
+
         System.out.println("Добавляем данные");
-        A_AddData.main(null);
-        System.out.println("OK!");
-        System.out.println("Добавляем пользователей");
-        A_AddUsers.main(null);
-        System.out.println("OK!");
-        System.out.println("Добавляем роли и корректируем добавленных пользователей");
-        B_AddRoles.main(null);
+
+        // crm_roles - добавляем роли
+        Role roleAdmin = new Role(0,"admin");
+        Role roleManager = new Role(0,"manager");
+        Role roleUser = new Role(0,"user");
+        RoleCRUD roleCRUD = new RoleCRUD();
+        roleCRUD.create(roleAdmin);
+        roleCRUD.create(roleManager);
+        roleCRUD.create(roleUser);
+
+        // crm_users - добавляем пользователей
+        UserCRUD userCRUD = new UserCRUD();
+        User user = new User(0,"GuruAdmin","12345",null,
+                "guruAdmin@guru.ru",false, roleAdmin.getId());
+        userCRUD.create(user);
+
+        user = new User(0,"UserManager1","1234",null,
+                "userManager1@gmail.com",false, roleManager.getId());
+        userCRUD.create(user);
+
+        user = new User(0,"User1","123",null,
+                "user1@gmail.com",false, roleUser.getId());
+        userCRUD.create(user);
+
+        // addr_countries - добавляем страны
+        CountryCRUD countryCRUD = new CountryCRUD();
+        Country country = new Country(0,"Belarus");
+        countryCRUD.create(country);
+
+        // addr_cities - добавляем города
+        CityCRUD cityCRUD = new CityCRUD();
+        City city = new City(0,"Minsk",country.getId());
+        cityCRUD.create(city);
+
+        // addr_cities - добавляем улицы
+        //Pobeditelei
+        //Prititskogo
+        StreetCRUD streetCRUD = new StreetCRUD();
+        Street street1 = new Street(0,"Pobeditelei",city.getId());
+        streetCRUD.create(street1);
+
+        Street street2 = new Street(0,"Prititskogo",city.getId());
+        streetCRUD.create(street2);
+
+        // addr_addresses - добавляем адреса
+        //Pobeditelei 65
+        //Prititskogo 29
+        AddressCRUD addressCRUD = new AddressCRUD();
+        Address address1 = new Address(0, street1.getId(), "65");
+        addressCRUD.create(address1);
+
+        Address address2 = new Address(0, street2.getId(), "29");
+        addressCRUD.create(address2);
+
+        // ls_shoppingcenters - добавляем торговые центры
+        // Zamok //53.9307475,27.5178348
+        // Tivalli 53.908061, 27.484856
+        ShoppingCenterCRUD shoppingCenterCRUD = new ShoppingCenterCRUD();
+        ShoppingCenter shoppingCenter1 = new ShoppingCenter(0, "Zamok", address1.getId(),
+                53.9307475f, 27.5178348f,
+                "Торговый центр Замок – новый уровень шопинга и развлечений! К вашим услугам" +
+                        " - магазины, кафе и рестораны, ледовый каток, кинотеатр, детский зал.");
+        shoppingCenterCRUD.create(shoppingCenter1);
+
+        ShoppingCenter shoppingCenter2 = new ShoppingCenter(0, "Tivalli", address2.getId(),
+                53.908061f, 27.484856f,
+                "Современный Многофункциональный Торгово-Развлекательный Бизнес Комплекс. " +
+                        "Представляет собой мощный проект, подчёркивающий современный этап развития" +
+                        " Минска в качестве столицы европейского государства.");
+        shoppingCenterCRUD.create(shoppingCenter2);
+
+
+        // ls_rooms - добавляем помещения
+        RoomCRUD roomCRUD = new RoomCRUD();
+        Room room = new Room(0, "A24", 524.6f, shoppingCenter1.getId());
+        roomCRUD.create(room);
+
+        room = new Room(0, "B67", 324.4f, shoppingCenter1.getId());
+        roomCRUD.create(room);
+
+        room = new Room(0, "C31", 724.4f, shoppingCenter2.getId());
+        roomCRUD.create(room);
+
+        room = new Room(0, "D15", 224.4f, shoppingCenter2.getId());
+        roomCRUD.create(room);
+
         System.out.println("OK!");
     }
 }

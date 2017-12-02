@@ -18,7 +18,7 @@ public class RoomCRUD {
                 "INSERT INTO ls_rooms(" +
                         "Name%s,ShoppingCenterId)" +
                         " VALUES('%s'%s,%d);",
-                item.getSquare() == null ? "" : "Square,",
+                item.getSquare() == null ? "" : ",Square",
                 item.getName(),
                 item.getSquare() == null ? "" : ",\'" + item.getSquare() + "\'",
                 item.getShoppingCenterId()
