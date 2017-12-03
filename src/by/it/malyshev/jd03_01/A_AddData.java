@@ -42,7 +42,7 @@ public class A_AddData {
             }
 
             statement.executeUpdate(String.format(
-                    "insert into authors_books(`authors_ID`,`books_ID`) values(%d, %d);", author, book));
+                    "insert into authorsBooks(`authors_ID`,`books_ID`) values(%d, %d);", author, book));
 
             statement.executeUpdate(String.format(
                     "insert into store(`quantity`,`books_ID`)" +

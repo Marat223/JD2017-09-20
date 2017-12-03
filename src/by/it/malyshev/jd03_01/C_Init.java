@@ -41,7 +41,7 @@ public class C_Init {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `malyshev`.`books`( " +
                     "`ID`INT NOT NULL AUTO_INCREMENT, " +
                     "`title`VARCHAR(100)NOT NULL, " +
-                    "`pubyear`YEAR NOT NULL, " +
+                    "`pubyear`INT NOT NULL, " +
                     "`isbn`VARCHAR(45)NOT NULL, " +
                     "`price`DECIMAL(10, 2)NOT NULL, " +
                     "PRIMARY KEY(`ID`)) " +
@@ -107,7 +107,7 @@ public class C_Init {
                     "PRIMARY KEY(`ID`)) " +
                     "ENGINE = InnoDB; ");
 
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `malyshev`.`authors_books`( " +
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `malyshev`.`authorsBooks`( " +
                     "`authors_ID`INT NOT NULL, " +
                     "`books_ID`INT NOT NULL, " +
                     "PRIMARY KEY(`authors_ID`, `books_ID`), " +
@@ -151,8 +151,8 @@ public class C_Init {
             statement.executeUpdate("INSERT INTO `malyshev`.`authors`(`ID`, `name`)VALUES(1, 'Герберт Шилдт'); ");
             statement.executeUpdate("INSERT INTO `malyshev`.`authors`(`ID`, `name`)VALUES(2, 'Дж. Р. Р. Толкин'); ");
 
-            statement.executeUpdate("INSERT INTO `malyshev`.`authors_books`(`authors_ID`, `books_ID`)VALUES(1, 1); ");
-            statement.executeUpdate("INSERT INTO `malyshev`.`authors_books`(`authors_ID`, `books_ID`)VALUES(2, 2); ");
+            statement.executeUpdate("INSERT INTO `malyshev`.`authorsBooks`(`authors_ID`, `books_ID`)VALUES(1, 1); ");
+            statement.executeUpdate("INSERT INTO `malyshev`.`authorsBooks`(`authors_ID`, `books_ID`)VALUES(2, 2); ");
 
         } catch (Exception e) {
             e.printStackTrace();

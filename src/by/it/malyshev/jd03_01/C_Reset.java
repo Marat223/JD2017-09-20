@@ -15,7 +15,7 @@ public class C_Reset {
 
             statement.executeUpdate("DROP TABLE IF EXISTS `malyshev`.`messages` ;");
             statement.executeUpdate("DROP TABLE IF EXISTS `malyshev`.`store` ;");
-            statement.executeUpdate("DROP TABLE IF EXISTS `malyshev`.`authors_books` ;");
+            statement.executeUpdate("DROP TABLE IF EXISTS `malyshev`.`authorsBooks` ;");
             statement.executeUpdate("DROP TABLE IF EXISTS `malyshev`.`authors` ;");
             statement.executeUpdate("DROP TABLE IF EXISTS `malyshev`.`orders` ;");
             statement.executeUpdate("DROP TABLE IF EXISTS `malyshev`.`users` ;");
