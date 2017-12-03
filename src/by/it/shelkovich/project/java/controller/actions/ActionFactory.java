@@ -6,8 +6,9 @@ public enum ActionFactory {
     INSTANCE;
 
     public ICommand getCommand(HttpServletRequest req) {
-        String commandValue = req.getParameter("command").toUpperCase();
-        if(commandValue.equals("")) commandValue = "main";
+        String commandValue = req.getParameter("command");
+        if(commandValue==null) commandValue = "main";
+        commandValue = commandValue.toUpperCase();
         try {
             return Actions.valueOf(commandValue).command;
         } catch (IllegalArgumentException e) {
