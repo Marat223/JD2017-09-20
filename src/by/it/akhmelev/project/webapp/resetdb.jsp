@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="include/begin-html.jsp" %>
 
-<div style="text-align: center;">
+<center>
     <br><br><br><br><br><br>
     <form class="form-horizontal" action="do?command=ResetDB" method="post">
         <fieldset>
@@ -20,7 +20,7 @@
 
         </fieldset>
     </form>
-</div>
+</center>
 
 
 <%@ include file="include/end-html.jsp" %>

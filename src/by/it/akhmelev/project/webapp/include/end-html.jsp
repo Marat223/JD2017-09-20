@@ -1,15 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<footer class="navbar-bottom row-fluid">
-    <div class="container">
-        <p>Сообщение сервера: ${jsp_message}</p>
-        <p>Ошибки сервера: <b><span style="color: red; ">${jsp_error}</span></b></p>
-
-        <p>IT-academy © 2016 <a href="#">Реквизиты, контакты и все такое</a></p>
-    </div>
-</footer>
-
 </div> <!-- /cointainer -->
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+    <div class="container">
+        <p>Message server: ${jsp_message}</p>
+        <p>Error server: <b><span style="color: red; ">${jsp_error}</span></b></p>
+        <p>IT-academy 2017. <a href="#">Copyright, contacts and other...</a></p>
+    </div>
+</nav>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
