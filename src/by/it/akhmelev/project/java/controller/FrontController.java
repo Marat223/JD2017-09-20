@@ -10,23 +10,21 @@ import java.io.IOException;
 public class FrontController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req,resp);
+        ICommand cmd=new ActionFactory().getCommand(req);
+        cmd.execute(req);
+        RequestDispatcher disp=req.getRequestDispatcher(cmd.getJsp());
+        disp.include(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req,resp);
-    }
-
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         ICommand cmd=new ActionFactory().getCommand(req);
-        ICommand nextAction=cmd.execute();
+        ICommand nextAction=cmd.execute(req);
         if (nextAction==null) {
             RequestDispatcher disp=req.getRequestDispatcher(cmd.getJsp());
-            disp.include(req,resp);}
+            disp.forward(req,resp);}
         else
         /* TODO fix fo */
-            resp.sendRedirect(nextAction.getJsp());
+            resp.sendRedirect("do?command="+nextAction);
     }
-
 }
