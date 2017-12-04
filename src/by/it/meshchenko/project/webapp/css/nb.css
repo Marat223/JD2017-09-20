@@ -1,0 +1,86 @@
+html, body {
+    height: 100%;
+}
+body {
+    padding-top: 60px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+.mycontainer{
+	margin-top: 10px;
+	height: 97%;
+	color: #003360;
+	background-color: rgba(244, 244, 244, 1);
+}
+.navbar{
+	font-size: 20px;
+}
+.mycontainer1{
+	max-width: 1200px;
+	height: inherit;
+}
+.login{
+	max-width: 1200px;
+	height: 330px;
+}
+.error{
+	max-width: 1200px;
+	height: 250px;
+}
+.loginIndex{
+	max-width: 1200px;
+	height: 330px;
+}
+.pageName{
+	font-size: 20px;
+	padding-right: 30px;
+}
+#map {
+    min-height: 400px;
+}
+.margin-bottom-8{
+	margin-bottom: 8px;
+}
+.navbar-fixed-top .nav {
+    padding: 5px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 5px;
+}
+
+.navbar-inverse {
+    background-color: rgba(244, 244, 244, 1);
+    border-color: rgba(244, 244, 244, 1);
+
+footer {
+    padding: 30px 0;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 60px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+	}
+
+    .navbar-fixed-top .navbar-brand {
+        padding: 5px 0;
+    }
+}
+.navbar{
+	min-height: 50px;
+}
+.nav > li > a {
+	padding: 10px 10px;
+}
+.progress{
+	margin-bottom: 5px;
+}
+.modal-dialog{
+		width: 380px;
+		margin: 30px auto;
+}
+.nbDocks {
+	/*max-width: 20px;*/
+	opacity: 0.5;
+}
+.nbDockName, .nbBikes, .emptyDocks {
+	display: inline-bloack;
+}
