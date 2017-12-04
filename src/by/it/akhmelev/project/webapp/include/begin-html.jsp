@@ -34,7 +34,7 @@
                     <a class="nav-link" href="#">Active <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" target="_blank" href="http://localhost:2080/phpmyadmin/">PHP MyAdmin</a>
                 </li>
             </ul>
             <ul class="navbar-nav navbar-right">
