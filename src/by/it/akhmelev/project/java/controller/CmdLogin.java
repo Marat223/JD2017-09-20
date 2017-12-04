@@ -26,6 +26,8 @@ class CmdLogin extends AbstractAction {
                 if (users.size()==1){
                     user=users.get(0);
                     req.setAttribute("user",user);
+                } else {
+                    req.setAttribute("user","User: "+user.getLogin()+" not found");
                 }
                 /* TODO session */
             } catch (ParseException e) {
