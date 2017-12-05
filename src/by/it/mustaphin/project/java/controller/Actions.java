@@ -1,4 +1,4 @@
-package by.it.mustaphin.project.java.controller;
+package controller;
 
 public enum Actions {
 
@@ -21,8 +21,17 @@ public enum Actions {
         {
             this.command = new CmdError();
         }
+    },
+    LOOKCATALOG {
+        {
+            this.command = new CmdLookCatalog();
+        }
+    },
+    CHECKRESULTS {
+        {
+            this.command = new CmdCheckResults();
+        }
     };
-
 
     ICommand command;
 }

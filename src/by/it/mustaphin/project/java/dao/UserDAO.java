@@ -1,7 +1,7 @@
-package by.it.mustaphin.project.java.dao;
+package dao;
 
-import by.it.mustaphin.project.java.bean.User;
-import by.it.mustaphin.project.java.connection.ConnectionCreator;
+import bean.User;
+import connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,29 +31,32 @@ public class UserDAO extends AbstactDAO implements InterfaceDAO<User> {
         String login = user.getLogin();
         String password = user.getPassword();
         int fk_question = user.getFk_question();
-        user.setId_user(executeUpdate("INSERT INTO users (name, login, password, fk_question) VALUES ('" + name + "', '" + login + "', '" + password + "','" + fk_question + "');"));
-        return (0 < user.getId_user());
+        int id = executeCreate("INSERT INTO users (name, login, password, fk_question) VALUES ('" + name + "', '" + login + "', '" + password + "','" + fk_question + "');");
+        if (0 < id) {
+            user.setId_user(id);
+        }
+        return (0 < id);
     }
 
     @Override
     public boolean update(User user) throws SQLException {
-        return (1 == executeUpdate("UPDATE users SET login='" + user.getName() + "', password='" + user.getLogin() + "' , name='" + user.getPassword() + "' WHERE id_user='" + user.getId_user() + "';"));
+        return (1 == executeCreate("UPDATE users SET login='" + user.getName() + "', password='" + user.getLogin() + "' , name='" + user.getPassword() + "' WHERE id_user='" + user.getId_user() + "';"));
     }
 
     @Override
     public boolean delete(User user) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM users WHERE id_user='" + user.getId_user() + "';"));
+        return (0 < executeCreate("DELETE FROM users WHERE id_user='" + user.getId_user() + "';"));
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM users WHERE id_user='" + id + "';"));
+        return (0 < executeCreate("DELETE FROM users WHERE id_user='" + id + "';"));
     }
 
     @Override
     public User read(User user) throws SQLException {
         try (Connection con = ConnectionCreator.getConnection();
-             Statement st = con.createStatement()) {
+                Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM users WHERE id_user='" + user.getId_user() + "';");
             if (rs.next()) {
                 user = new User(
@@ -73,7 +76,7 @@ public class UserDAO extends AbstactDAO implements InterfaceDAO<User> {
     public User read(int id) throws SQLException {
         User user = null;
         try (Connection con = ConnectionCreator.getConnection();
-             Statement st = con.createStatement()) {
+                Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM users WHERE id_user='" + id + "';");
             if (rs.next()) {
                 user = new User(

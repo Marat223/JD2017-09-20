@@ -1,8 +1,6 @@
-package by.it.mustaphin.project.java.controller;
+package controller;
 
 public abstract class AbstractAction implements ICommand {
-    @Override
-    public abstract ICommand execute();
 
     @Override
     public String getJsp() {

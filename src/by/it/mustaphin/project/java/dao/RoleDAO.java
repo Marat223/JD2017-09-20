@@ -1,7 +1,7 @@
-package by.it.mustaphin.project.java.dao;
+package dao;
 
-import by.it.mustaphin.project.java.bean.Role;
-import by.it.mustaphin.project.java.connection.ConnectionCreator;
+import bean.Role;
+import connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,23 +29,26 @@ public class RoleDAO extends AbstactDAO implements InterfaceDAO<Role> {
     public boolean create(Role role) throws SQLException {
         int id_role = role.getId_role();
         String type = role.getType();
-        role.setId_role(executeUpdate("INSERT INTO roles (id_role, type) VALUES ('" + id_role + "', '" + type + "');"));
-        return (0 < role.getId_role());
+        int id = executeCreate("INSERT INTO roles (id_role, type) VALUES ('" + id_role + "', '" + type + "');");
+        if (0 < id) {
+            role.setId_role(id_role);
+        }
+        return (0 < id);
     }
 
     @Override
     public boolean update(Role role) throws SQLException {
-        return (1 == executeUpdate("UPDATE roles SET type='" + role.getType() + "' WHERE id_role='" + role.getId_role() + "';"));
+        return (1 == executeCreate("UPDATE roles SET type='" + role.getType() + "' WHERE id_role='" + role.getId_role() + "';"));
     }
 
     @Override
     public boolean delete(Role role) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM roles WHERE id_role='" + role.getId_role() + "';"));
+        return (0 < executeCreate("DELETE FROM roles WHERE id_role='" + role.getId_role() + "';"));
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM roles WHERE id_role='" + id + "';"));
+        return (0 < executeCreate("DELETE FROM roles WHERE id_role='" + id + "';"));
     }
 
     @Override

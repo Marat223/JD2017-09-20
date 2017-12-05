@@ -1,4 +1,4 @@
-package by.it.mustaphin.project.java.dao;
+package dao;
 
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 

@@ -1,7 +1,7 @@
-package by.it.mustaphin.project.java.dao;
+package dao;
 
-import by.it.mustaphin.project.java.bean.Right;
-import by.it.mustaphin.project.java.connection.ConnectionCreator;
+import bean.Right;
+import connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -46,7 +46,7 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
         int admin = convSQL(right.getCouples().get("admin"));
         int user = convSQL(right.getCouples().get("user"));
         int guest = convSQL(right.getCouples().get("guest"));
-        return (0 < executeUpdate("INSERT INTO rights (id_user, admin, user, guest) VALUES (" + id_user + ", " + admin + ", " + user + ", " + guest + ");"));
+        return (0 < executeCreate("INSERT INTO rights (id_user, admin, user, guest) VALUES (" + id_user + ", " + admin + ", " + user + ", " + guest + ");"));
     }
 
     @Override
@@ -55,17 +55,17 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
         int admin = convSQL(right.getCouples().get("guest"));
         int user = convSQL(right.getCouples().get("guest"));
         int guest = convSQL(right.getCouples().get("guest"));
-        return (1 == executeUpdate("UPDATE rights SET admin=" + admin + ", user=" + user + ", guest=" + guest + " WHERE id_user='" + id_user + "';"));
+        return (1 == executeCreate("UPDATE rights SET admin=" + admin + ", user=" + user + ", guest=" + guest + " WHERE id_user='" + id_user + "';"));
     }
 
     @Override
     public boolean delete(Right right) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM rights WHERE id_user='" + right.getId_user() + "';"));
+        return (0 < executeCreate("DELETE FROM rights WHERE id_user='" + right.getId_user() + "';"));
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM rights WHERE id_user='" + id + "';"));
+        return (0 < executeCreate("DELETE FROM rights WHERE id_user='" + id + "';"));
     }
 
     @Override

@@ -1,7 +1,7 @@
-package by.it.mustaphin.project.java.dao;
+package dao;
 
-import by.it.mustaphin.project.java.bean.Question;
-import by.it.mustaphin.project.java.connection.ConnectionCreator;
+import bean.Question;
+import connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,29 +28,32 @@ public class QuestionDAO extends AbstactDAO implements InterfaceDAO<Question> {
     @Override
     public boolean create(Question question) throws SQLException {
         String theme = question.getTheme();
-        question.setId_question(executeUpdate("INSERT INTO questions (theme) VALUES ('" + theme + "');"));
-        return (0 < question.getId_question());
+        int id = executeCreate("INSERT INTO questions (theme) VALUES ('" + theme + "');");
+        if (0 < id) {
+            question.setId_question(id);
+        }
+        return (0 < id);
     }
 
     @Override
     public boolean update(Question question) throws SQLException {
-        return (1 == executeUpdate("UPDATE qustions SET theme='" + question.getTheme() + " WHERE id_question='" + question.getId_question() + "';"));
+        return (1 == executeCreate("UPDATE qustions SET theme='" + question.getTheme() + " WHERE id_question='" + question.getId_question() + "';"));
     }
 
     @Override
     public boolean delete(Question question) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM questions WHERE id_question='" + question.getId_question() + "';"));
+        return (0 < executeCreate("DELETE FROM questions WHERE id_question='" + question.getId_question() + "';"));
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM questions WHERE id_question='" + id + "';"));
+        return (0 < executeCreate("DELETE FROM questions WHERE id_question='" + id + "';"));
     }
 
     @Override
     public Question read(Question question) throws SQLException {
         try (Connection con = ConnectionCreator.getConnection();
-             Statement st = con.createStatement()) {
+                Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM questions WHERE id_question='" + question.getId_question() + "';");
             if (rs.next()) {
                 question = new Question(rs.getInt("id_question"), rs.getString("theme"));
@@ -65,7 +68,7 @@ public class QuestionDAO extends AbstactDAO implements InterfaceDAO<Question> {
     public Question read(int id) throws SQLException {
         Question question = null;
         try (Connection con = ConnectionCreator.getConnection();
-             Statement st = con.createStatement()) {
+                Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM questions WHERE id_question='" + id + "';");
             if (rs.next()) {
                 question = new Question(rs.getInt("id_question"), rs.getString("theme"));

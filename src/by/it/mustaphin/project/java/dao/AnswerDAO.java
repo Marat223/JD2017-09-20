@@ -1,7 +1,7 @@
-package by.it.mustaphin.project.java.dao;
+package dao;
 
-import by.it.mustaphin.project.java.bean.Answer;
-import by.it.mustaphin.project.java.connection.ConnectionCreator;
+import bean.Answer;
+import connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -30,29 +30,32 @@ public class AnswerDAO extends AbstactDAO implements InterfaceDAO<Answer> {
         boolean correct = answer.isCorrect();
         int fk_question = answer.getFk_question();
         String text = answer.getText();
-        answer.setId_answer(executeUpdate("INSERT INTO answers (correct, fk_question, text) VALUES ('" + correct + "', '" + fk_question + "', '" + text + "');"));
-        return (0 < answer.getId_answer());
+        int id = executeCreate("INSERT INTO answers (correct, fk_question, text) VALUES ('" + correct + "', '" + fk_question + "', '" + text + "');");
+        if (0 < id) {
+            answer.setId_answer(id);
+        }
+        return (0 < id);
     }
 
     @Override
     public boolean update(Answer answer) throws SQLException {
-        return (1 == executeUpdate("UPDATE answers SET correct='" + answer.isCorrect() + "', fk_question='" + answer.getFk_question() + "' WHERE id_answer='" + answer.getId_answer() + "';"));
+        return (1 == executeCreate("UPDATE answers SET correct='" + answer.isCorrect() + "', fk_question='" + answer.getFk_question() + "' WHERE id_answer='" + answer.getId_answer() + "';"));
     }
 
     @Override
     public boolean delete(Answer answer) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM answers WHERE id_answer='" + answer.getId_answer() + "';"));
+        return (0 < executeCreate("DELETE FROM answers WHERE id_answer='" + answer.getId_answer() + "';"));
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return (0 < executeUpdate("DELETE FROM answers WHERE id_answer='" + id + "';"));
+        return (0 < executeCreate("DELETE FROM answers WHERE id_answer='" + id + "';"));
     }
 
     @Override
     public Answer read(Answer answer) throws SQLException {
         try (Connection con = ConnectionCreator.getConnection();
-             Statement st = con.createStatement()) {
+                Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM answers WHERE id_answer='" + answer.getId_answer() + "';");
             if (rs.next()) {
                 answer = new Answer(
@@ -70,7 +73,7 @@ public class AnswerDAO extends AbstactDAO implements InterfaceDAO<Answer> {
     public Answer read(int id) throws SQLException {
         Answer answer = null;
         try (Connection con = ConnectionCreator.getConnection();
-             Statement st = con.createStatement()) {
+                Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM answers WHERE id_answer='" + id + "';");
             if (rs.next()) {
                 answer = new Answer(

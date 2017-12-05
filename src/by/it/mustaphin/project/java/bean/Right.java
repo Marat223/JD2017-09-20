@@ -1,4 +1,4 @@
-package by.it.mustaphin.project.java.bean;
+package bean;
 
 
 import java.util.HashMap;

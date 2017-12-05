@@ -1,4 +1,9 @@
-<project name="Ant to AKHMELEV" default="10deploy" basedir="..">
+<!-- Ant довольно простая, но несколько разросшаяся система сборки
+поэтому для полного понимания кода потребуется документация
+Смотрите тут https://ant.apache.org/manual/
+-->
+
+<project name="Ant to MUSTAPHIN" default="10deploy" basedir="..">
     <!-- подключаем файл с настройками -->
     <property file="ant/deploy.properties"/>
     <!-- описываем classpath для копилятора -->
@@ -30,7 +35,7 @@
     <!-- компиляция файлов проекта -->
     <target name="03compile" depends="02init">
         <echo>Compile the source files</echo>
-        <javac srcdir="${src.dir}" destdir="${build.dir}/WEB-INF/classes" debug="true">
+        <javac srcdir="${src.dir}" destdir="${build.dir}/WEB-INF/classes" debug="true" >
             <classpath  refid="classpath" />
         </javac>
     </target>
