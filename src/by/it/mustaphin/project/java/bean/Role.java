@@ -1,4 +1,4 @@
-package bean;
+package by.it.mustaphin.project.java.bean;
 
 public class Role {
     private int id_role;

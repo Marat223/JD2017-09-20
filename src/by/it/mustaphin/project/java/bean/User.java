@@ -1,4 +1,4 @@
-package bean;
+package by.it.mustaphin.project.java.bean;
 
 public class User {
     private int id_user;
@@ -16,7 +16,6 @@ public class User {
     }
 
     public User(String name, String login, String password, int fk_question) {
-
         this.name = name;
         this.login = login;
         this.password = password;

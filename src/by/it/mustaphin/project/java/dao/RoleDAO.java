@@ -1,7 +1,7 @@
-package dao;
+package by.it.mustaphin.project.java.dao;
 
-import bean.Role;
-import connection.ConnectionCreator;
+import by.it.mustaphin.project.java.bean.Role;
+import by.it.mustaphin.project.java.connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

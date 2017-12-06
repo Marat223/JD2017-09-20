@@ -1,7 +1,6 @@
-package dao;
+package by.it.mustaphin.project.java.dao;
 
-import bean.Question;
-import connection.ConnectionCreator;
+import by.it.mustaphin.project.java.connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import by.it.mustaphin.project.java.bean.Question ;
 
 public class QuestionDAO extends AbstactDAO implements InterfaceDAO<Question> {
 

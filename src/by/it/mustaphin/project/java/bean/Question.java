@@ -1,4 +1,4 @@
-package bean;
+package by.it.mustaphin.project.java.bean;
 
 public class Question {
     private int id_question;

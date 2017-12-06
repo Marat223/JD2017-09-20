@@ -1,6 +1,7 @@
-package dao;
+package by.it.mustaphin.project.java.dao;
 
-import connection.ConnectionCreator;
+import by.it.mustaphin.project.java.connection.ConnectionCreator;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

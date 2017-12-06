@@ -1,4 +1,4 @@
-package dao;
+package by.it.mustaphin.project.java.dao;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package controller;
+package by.it.mustaphin.project.java.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -1,7 +1,9 @@
-package dao;
+package by.it.mustaphin.project.java.dao;
 
-import bean.Answer;
-import connection.ConnectionCreator;
+import by.it.mustaphin.project.java.bean.Answer;
+import by.it.mustaphin.project.java.connection.ConnectionCreator;
+import by.it.mustaphin.project.java.dao.AbstactDAO;
+import by.it.mustaphin.project.java.dao.InterfaceDAO;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

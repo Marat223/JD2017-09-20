@@ -1,7 +1,7 @@
-package dao;
+package by.it.mustaphin.project.java.dao;
 
-import bean.Right;
-import connection.ConnectionCreator;
+import by.it.mustaphin.project.java.bean.Right;
+import by.it.mustaphin.project.java.connection.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

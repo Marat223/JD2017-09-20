@@ -1,4 +1,4 @@
-package controller;
+package by.it.mustaphin.project.java.controller;
 
 public enum Actions {
 

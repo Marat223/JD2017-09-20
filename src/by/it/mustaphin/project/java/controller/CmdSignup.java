@@ -1,8 +1,12 @@
-package controller;
+package by.it.mustaphin.project.java.controller;
 
-import bean.Right;
-import bean.User;
-import dao.DAO;
+import by.it.mustaphin.project.java.bean.Right;
+import by.it.mustaphin.project.java.bean.User;
+import by.it.mustaphin.project.java.controller.AbstractAction;
+import by.it.mustaphin.project.java.controller.ICommand;
+import by.it.mustaphin.project.java.controller.Messages;
+import by.it.mustaphin.project.java.dao.DAO;
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
