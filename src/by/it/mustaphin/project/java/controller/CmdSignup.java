@@ -15,7 +15,7 @@ public class CmdSignup extends AbstractAction {
         try {
             DAO dao = DAO.getDAO();
             User user = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("password"), 0);
-            boolean success = dao.user.create(user);
+            dao.user.create(user);
             Map<String, Boolean> rights = new HashMap<String, Boolean>();
             rights.put("admin", false);
             rights.put("user", true);
