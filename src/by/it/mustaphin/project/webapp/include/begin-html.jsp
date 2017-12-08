@@ -13,7 +13,7 @@
             <li><a href="do?command=ResetStatistics">Reset statistics</a></li>
         </ul>
         <ul>
-            <li><a href="do?command=SingUp">Signup</a></li>
+            <li><a href="do?command=SignUp">Signup</a></li>
             <li><a href="do?command=Login">Login</a></li>
             <li><a href="do?command=LogOut">Logout</a></li>
         </ul>
