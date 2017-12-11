@@ -7,4 +7,9 @@ public class CmdLogin extends AbstractAction {
     public ICommand execute(HttpServletRequest req) {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "CmdLogin{" + '}';
+    }
 }

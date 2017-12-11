@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO extends AbstactDAO implements InterfaceDAO<User> {
-
+    
     private static UserDAO userDAO = null;
-
+    
     public static UserDAO getUserDAO() {
         if (null == userDAO) {
             synchronized (UserDAO.class) {
@@ -23,35 +23,35 @@ public class UserDAO extends AbstactDAO implements InterfaceDAO<User> {
         }
         return userDAO;
     }
-
+    
     @Override
     public boolean create(User user) throws SQLException {
         String name = user.getName();
         String login = user.getLogin();
         String password = user.getPassword();
         int fk_question = user.getFk_question();
-        int id = executeCreate("INSERT INTO users (name, login, password, fk_question) VALUES ('" + name + "', '" + login + "', '" + password + "','" + fk_question + "');");
+        int id = executeCreate("INSERT INTO users (name, login, password, fk_question) VALUES ('" + name + "', '" + login + "', '" + password + "'," + fk_question + ");");
         if (0 < id) {
             user.setId_user(id);
         }
         return (0 < id);
     }
-
+    
     @Override
     public boolean update(User user) throws SQLException {
         return (1 == executeCreate("UPDATE users SET login='" + user.getName() + "', password='" + user.getLogin() + "' , name='" + user.getPassword() + "' WHERE id_user='" + user.getId_user() + "';"));
     }
-
+    
     @Override
     public boolean delete(User user) throws SQLException {
         return (0 < executeCreate("DELETE FROM users WHERE id_user='" + user.getId_user() + "';"));
     }
-
+    
     @Override
     public boolean delete(int id) throws SQLException {
         return (0 < executeCreate("DELETE FROM users WHERE id_user='" + id + "';"));
     }
-
+    
     @Override
     public User read(User user) throws SQLException {
         try (Connection con = ConnectionCreator.getConnection();
@@ -70,7 +70,7 @@ public class UserDAO extends AbstactDAO implements InterfaceDAO<User> {
         }
         return user;
     }
-
+    
     @Override
     public User read(int id) throws SQLException {
         User user = null;
@@ -90,12 +90,12 @@ public class UserDAO extends AbstactDAO implements InterfaceDAO<User> {
         }
         return user;
     }
-
+    
     @Override
     public List<User> getAll() throws SQLException {
         return getAll("");
     }
-
+    
     @Override
     public List<User> getAll(String condition) throws SQLException {
         List<User> users = new ArrayList<>();

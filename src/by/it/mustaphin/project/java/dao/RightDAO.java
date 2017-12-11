@@ -34,10 +34,11 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
 
     //convert to SQL parameter
     private int convSQL(boolean par) {
-        if (par)
+        if (par) {
             return 1;
-        else
+        } else {
             return 0;
+        }
     }
 
     @Override
@@ -46,7 +47,7 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
         int admin = convSQL(right.getCouples().get("admin"));
         int user = convSQL(right.getCouples().get("user"));
         int guest = convSQL(right.getCouples().get("guest"));
-        return (0 < executeCreate("INSERT INTO rights (id_user, admin, user, guest) VALUES (" + id_user + ", " + admin + ", " + user + ", " + guest + ");"));
+        return (0 < executeCreate("INSERT INTO rights ( admin, user, guest) VALUES (" + admin + ", " + user + ", " + guest + ");"));
     }
 
     @Override
@@ -71,7 +72,7 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
     @Override
     public Right read(Right right) throws SQLException {
         try (Connection con = ConnectionCreator.getConnection();
-             Statement st = con.createStatement()) {
+                Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM rights WHERE id_user='" + right.getId_user() + "';");
             if (rs.next()) {
                 Map<String, Boolean> rights = new HashMap<>();
@@ -90,7 +91,7 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
     public Right read(int id) throws SQLException {
         Right right = null;
         try (Connection con = ConnectionCreator.getConnection();
-             Statement st = con.createStatement()) {
+                Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM rights WHERE id_user='" + id + "';");
             if (rs.next()) {
                 Map<String, Boolean> rights = new HashMap<>();
