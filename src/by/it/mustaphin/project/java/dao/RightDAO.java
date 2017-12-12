@@ -43,43 +43,39 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
 
     @Override
     public boolean create(Right right) throws SQLException {
-        int id_user = right.getId_user();
-        int admin = convSQL(right.getCouples().get("admin"));
-        int user = convSQL(right.getCouples().get("user"));
-        int guest = convSQL(right.getCouples().get("guest"));
-        return (0 < executeCreate("INSERT INTO rights ( admin, user, guest) VALUES (" + admin + ", " + user + ", " + guest + ");"));
+        int id_user = right.getId_right();
+        int admin = convSQL(right.isAdmin());
+        int user = convSQL(right.isUser());
+        int guest = convSQL(right.isGuest());
+        return (0 < executeCreate("INSERT INTO rights (id_right, admin, user, guest) VALUES (" + id_user + ", " + admin + ", " + user + ", " + guest + ");"));
     }
 
     @Override
     public boolean update(Right right) throws SQLException {
-        int id_user = right.getId_user();
-        int admin = convSQL(right.getCouples().get("guest"));
-        int user = convSQL(right.getCouples().get("guest"));
-        int guest = convSQL(right.getCouples().get("guest"));
-        return (1 == executeCreate("UPDATE rights SET admin=" + admin + ", user=" + user + ", guest=" + guest + " WHERE id_user='" + id_user + "';"));
+        int id_right = right.getId_right();
+        int admin = convSQL(right.isAdmin());
+        int user = convSQL(right.isUser());
+        int guest = convSQL(right.isGuest());
+        return (1 == executeCreate("UPDATE rights SET admin=" + admin + ", user=" + user + ", guest=" + guest + " WHERE id_right='" + id_right + "';"));
     }
 
     @Override
     public boolean delete(Right right) throws SQLException {
-        return (0 < executeCreate("DELETE FROM rights WHERE id_user='" + right.getId_user() + "';"));
+        return (0 < executeCreate("DELETE FROM rights WHERE id_right='" + right.getId_right() + "';"));
     }
 
     @Override
     public boolean delete(int id) throws SQLException {
-        return (0 < executeCreate("DELETE FROM rights WHERE id_user='" + id + "';"));
+        return (0 < executeCreate("DELETE FROM rights WHERE id_right='" + id + "';"));
     }
 
     @Override
     public Right read(Right right) throws SQLException {
         try (Connection con = ConnectionCreator.getConnection();
                 Statement st = con.createStatement()) {
-            ResultSet rs = st.executeQuery("SELECT * FROM rights WHERE id_user='" + right.getId_user() + "';");
+            ResultSet rs = st.executeQuery("SELECT * FROM rights WHERE id_right='" + right.getId_right() + "';");
             if (rs.next()) {
-                Map<String, Boolean> rights = new HashMap<>();
-                rights.put("admin", convBean(rs.getInt("admin")));
-                rights.put("user", convBean(rs.getInt("user")));
-                rights.put("guest", convBean(rs.getInt("guest")));
-                right = new Right(right.getId_user(), rights);
+                right = new Right(right.getId_right(), convBean(rs.getInt("admin")), convBean(rs.getInt("user")), convBean(rs.getInt("guest")));
             }
         } catch (SQLException e) {
             throw e;
@@ -92,13 +88,9 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
         Right right = null;
         try (Connection con = ConnectionCreator.getConnection();
                 Statement st = con.createStatement()) {
-            ResultSet rs = st.executeQuery("SELECT * FROM rights WHERE id_user='" + id + "';");
+            ResultSet rs = st.executeQuery("SELECT * FROM rights WHERE id_right='" + id + "';");
             if (rs.next()) {
-                Map<String, Boolean> rights = new HashMap<>();
-                rights.put("admin", convBean(rs.getInt("admin")));
-                rights.put("user", convBean(rs.getInt("user")));
-                rights.put("guest", convBean(rs.getInt("guest")));
-                right = new Right(right.getId_user(), rights);
+                right = new Right(id, convBean(rs.getInt("admin")), convBean(rs.getInt("user")), convBean(rs.getInt("guest")));
             }
         } catch (SQLException e) {
             throw e;
@@ -117,12 +109,7 @@ public class RightDAO extends AbstactDAO implements InterfaceDAO<Right> {
         try (Connection con = ConnectionCreator.getConnection(); Statement st = con.createStatement()) {
             ResultSet rs = st.executeQuery("SELECT * FROM rights" + condition + ";");
             while (rs.next()) {
-                Map<String, Boolean> rights = new HashMap<>();
-                rights.put("admin", convBean(rs.getInt("admin")));
-                rights.put("user", convBean(rs.getInt("user")));
-                rights.put("guest", convBean(rs.getInt("guest")));
-                Right right = new Right(rs.getInt("id_user"), rights);
-                pack.add(right);
+                pack.add(new Right(rs.getInt("id_right"), convBean(rs.getInt("admin")), convBean(rs.getInt("user")), convBean(rs.getInt("guest"))));
             }
         } catch (SQLException e) {
             throw e;

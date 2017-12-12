@@ -1,16 +1,17 @@
 package by.it.mustaphin.project.java.bean;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class Right {
-    private int id_user;
-    private Map<String, Boolean> couples = new HashMap<>();
 
-    public Right(int id_user, Map<String, Boolean> couples) {
-        this.id_user = id_user;
-        this.couples.putAll(couples);
+    private int id_right;
+    private boolean admin;
+    private boolean user;
+    private boolean guest;
+
+    public Right(int id_right, boolean admin, boolean user, boolean guest) {
+        this.id_right = id_right;
+        this.admin = admin;
+        this.user = user;
+        this.guest = guest;
     }
 
     public Right() {
@@ -18,47 +19,78 @@ public class Right {
     }
 
     @Override
-    public String toString() {
-        return "Right{" +
-                "id_user=" + id_user +
-                ", couples=" + couples +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Right)) return false;
-
-        Right right = (Right) o;
-
-        if (id_user != right.id_user) return false;
-        return couples.equals(right.couples);
-    }
-
-    @Override
     public int hashCode() {
-        int result = id_user;
-        result = 31 * result + couples.hashCode();
-        return result;
+        int hash = 3;
+        hash = 73 * hash + this.id_right;
+        hash = 73 * hash + (this.admin ? 1 : 0);
+        hash = 73 * hash + (this.user ? 1 : 0);
+        hash = 73 * hash + (this.guest ? 1 : 0);
+        return hash;
     }
 
-    public int getId_user() {
-
-        return id_user;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Right other = (Right) obj;
+        if (this.id_right != other.id_right) {
+            return false;
+        }
+        if (this.admin != other.admin) {
+            return false;
+        }
+        if (this.user != other.user) {
+            return false;
+        }
+        if (this.guest != other.guest) {
+            return false;
+        }
+        return true;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public Map<String, Boolean> getCouples() {
-        return couples;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
-    public void setCouples(Map<String, Boolean> couples) {
-        this.couples = couples;
+    public boolean isUser() {
+        return user;
     }
+
+    public void setUser(boolean user) {
+        this.user = user;
+    }
+
+    public boolean isGuest() {
+        return guest;
+    }
+
+    public void setGuest(boolean guest) {
+        this.guest = guest;
+    }
+
+    @Override
+    public String toString() {
+        return "Right{" + "id_right=" + id_right + ", admin=" + admin + ", user=" + user + ", guest=" + guest + '}';
+    }
+
+    public int getId_right() {
+
+        return id_right;
+    }
+
+    public void setId_right(int id_right) {
+        this.id_right = id_right;
+    }
+
 }
-
-
